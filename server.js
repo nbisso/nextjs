@@ -29,7 +29,7 @@ class Application {
 
                 server.use(cookieParser())
 
-                server.use("/api", apiroutes())
+                server.use("/api", apiroutes(server))
 
                 server.get('*', authMiddleware, (req, res) => {
                     return handle(req, res)
