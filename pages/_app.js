@@ -27,39 +27,32 @@ import theme from "../src/theme";
 // };
 
 import React from "react";
-import App from "next/app";
+import CleanLayout from "../components/CleanLayout";
 //import SiteLayout from "../components/SiteLayout";
 //import "../css/tailwind.css";
-const CleanLayout = ({ children }) => (
-  <div className="bg-white antialiased">
-    <div className="mt-6 sm:mt-0 sm:py-12">{children}</div>
-  </div>
-);
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps, router } = this.props;
+function MyApp(props) {
+  const { Component, pageProps, router } = props;
 
-    const getLayout =
-      Component.getLayout || ((page) => <CleanLayout children={page} />);
+  const getLayout =
+    Component.getLayout || ((page) => <CleanLayout children={page} />);
 
-    return getLayout(
-      <React.Fragment>
-        <Head>
-          <title>My page</title>
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width"
-          />
-        </Head>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </React.Fragment>
-    );
-  }
+  return getLayout(
+    <React.Fragment>
+      <Head>
+        <title>My page</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </React.Fragment>
+  );
 }
 
 export default MyApp;
