@@ -29,7 +29,8 @@ export default function Home({ stars }) {
             {stars}
             <div>{loading ? "cargando..." : ""}</div>
             <button onClick={login}>login</button>
-        </div>
+            <button onClick={() => router.push("/about")}>abo</button>
+        </div >
     )
 }
 
