@@ -1,41 +1,18 @@
-// import React from 'react';
-// import PropTypes from 'prop-types';
+import React from "react";
 import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+
+import CleanLayout from "../components/layouts/CleanLayout";
+import SiteLayout from "../components/layouts/SiteLayout";
+
 import theme from "../src/theme";
-
-// export default function MyApp(props) {
-//     const { Component, pageProps } = props;
-
-//     React.useEffect(() => {
-//         // Remove the server-side injected CSS.
-//         const jssStyles = document.querySelector('#jss-server-side');
-//         if (jssStyles) {
-//             jssStyles.parentElement.removeChild(jssStyles);
-//         }
-//     }, []);
-
-//     return (
-
-//     );
-// }
-
-// MyApp.propTypes = {
-//     Component: PropTypes.elementType.isRequired,
-//     pageProps: PropTypes.object.isRequired,
-// };
-
-import React from "react";
-import CleanLayout from "../components/CleanLayout";
-//import SiteLayout from "../components/SiteLayout";
-//import "../css/tailwind.css";
 
 function MyApp(props) {
   const { Component, pageProps, router } = props;
 
   const getLayout =
-    Component.getLayout || ((page) => <CleanLayout children={page} />);
+    Component.getLayout || ((page) => <SiteLayout children={page} />);
 
   return getLayout(
     <React.Fragment>

@@ -34,26 +34,6 @@ const AccountSettingsLayout = ({ children }) => {
         <ActiveLink href="/account-settings/basic2">
           Basic Information 2
         </ActiveLink>
-
-        {/* <ActiveLink href="/account-settings/profile" className="ml-10">
-          Profile
-        </ActiveLink>
-
-        <ActiveLink href="/account-settings/team-settings" className="ml-10">
-          Team Settings
-        </ActiveLink>
-
-        <ActiveLink href="/account-settings/billing" className="ml-10">
-          Billing
-        </ActiveLink>
-
-        <ActiveLink href="/account-settings/notifications" className="ml-10">
-          Notifications
-        </ActiveLink>
-
-        <ActiveLink href="/account-settings/security" className="ml-10">
-          Security
-        </ActiveLink> */}
       </div>
 
       <div>{children}</div>

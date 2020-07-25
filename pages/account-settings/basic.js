@@ -1,6 +1,6 @@
 import Link from "next/link";
-import SiteLayout from "../../components/SiteLayout";
-import { getLayout } from "../../components/AccountSettingsLayout";
+import SiteLayout from "../../components/layouts/SiteLayout";
+import { getLayout } from "../../components/layouts/AccountSettingsLayout";
 
 const AccountSettingsBasicInformation = () => (
   <div>
