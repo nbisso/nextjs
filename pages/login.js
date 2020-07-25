@@ -15,18 +15,7 @@ import Container from "@material-ui/core/Container";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { getLayout } from "../components/layouts/CleanLayout";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
+import Copyright from "../components/Copyright";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignIn = () => {
+const Login = () => {
   const classes = useStyles();
 
   const login = (e) => {
@@ -121,6 +110,6 @@ const SignIn = () => {
   );
 };
 
-SignIn.getLayout = getLayout;
+Login.getLayout = getLayout;
 
-export default SignIn;
+export default Login;
