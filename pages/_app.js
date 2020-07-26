@@ -7,16 +7,17 @@ import CleanLayout from "../components/layouts/CleanLayout";
 import SiteLayout from "../components/layouts/SiteLayout";
 
 import theme from "../src/theme";
-import enviroment from "../util/enviroment";
 
-var firebaseConfig = enviroment.FIREBASE_FRONT_CONFIG;
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
 
 
 function MyApp(props) {
+
+
+  var firebaseConfig = props.enviroment.FIREBASE_FRONT_CONFIG;
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
 
   const { Component, pageProps, router } = props;
 
@@ -43,4 +44,7 @@ function MyApp(props) {
   );
 }
 
+MyApp.getInitialProps = async (x) => {
+  return { enviroment: require("../util/enviroment") };
+}
 export default MyApp;
