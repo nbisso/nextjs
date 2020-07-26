@@ -1,12 +1,14 @@
 const express = require('express')
 const next = require('next')
 const cookieParser = require("cookie-parser")
-var firebase = require("firebase/app");
+
 const dev = process.env.NODE_ENV !== 'production'
 
 const authMiddleware = require("./middleware/authPage")
 const apiroutes = require("./routes/api")
 
+var admin = require('firebase-admin');
+const serviceAccount = require("./cocinando-766f0-firebase-adminsdk-4cczq-1072cf404d.json")
 
 class Application {
     constructor(firabaseConfig) {
@@ -14,7 +16,10 @@ class Application {
     }
 
     initFirabase() {
-        firebase.initializeApp(this.firabaseConfig);
+        admin.initializeApp({
+            databaseURL: "https://cocinando-766f0.firebaseio.com",
+            credential: this.firabaseConfig
+        });
     }
 
     async init() {
@@ -28,6 +33,8 @@ class Application {
                 this.initFirabase();
 
                 server.use(cookieParser())
+
+                server.use(express.json())
 
                 server.use("/api", apiroutes(server))
 
@@ -48,15 +55,8 @@ class Application {
 
 }
 
-let app = new Application({
-    apiKey: "AIzaSyCwk-9Lo6_9k2LZGk6FrH-n4rWXv3xWvrQ",
-    authDomain: "cocinando-766f0.firebaseapp.com",
-    databaseURL: "https://cocinando-766f0.firebaseio.com",
-    projectId: "cocinando-766f0",
-    storageBucket: "cocinando-766f0.appspot.com",
-    messagingSenderId: "311671787189",
-    appId: "1:311671787189:web:74c9ad404c4157ff9af8fc",
-    measurementId: "G-XW842M2D1R"
-});
+let app = new Application(
+    admin.credential.cert(serviceAccount)
+);
 
 app.init()
