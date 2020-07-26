@@ -1,6 +1,8 @@
 module.exports = {
     SECRET_JWT: process.env.SECRET_KEY || "DEVKEY",
-    FIREBASE_ADMIN_CONFIG: process.env.FIREBASE_ADMIN_CONFIG ? JSON.parse(process.env.FIREBASE_ADMIN_CONFIG) : require("../secret.json"),
+    FIREBASE_ADMIN_CONFIG: function () {
+        return JSON.parse(process.env.FIREBASE_ADMIN_CONFIG)
+    },
     PORT: process.env.PORT || 3000,
     FIREBASE_FRONT_CONFIG: process.env.FIREBASE_FRONT_CONFIG ? JSON.parse(process.env.FIREBASE_FRONT_CONFIG) : {
         apiKey: "AIzaSyCq1D2qapuqgiHhuRzgkymRt7eZy0W_-Fg",

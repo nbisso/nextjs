@@ -9,15 +9,20 @@ const apiroutes = require("./routes/api")
 
 var admin = require('firebase-admin');
 const enviroment = require('./util/enviroment')
-const serviceAccount = enviroment.FIREBASE_ADMIN_CONFIG;
+
 
 
 class Application {
-    constructor(firabaseConfig) {
-        this.firabaseConfig = firabaseConfig;
+    constructor() {
+        try {
+            this.firabaseConfig = admin.credential.cert(enviroment.FIREBASE_ADMIN_CONFIG);
+        } catch{
+
+        }
     }
 
     initFirabase() {
+
         admin.initializeApp({
             databaseURL: "https://cocinando-766f0.firebaseio.com",
             credential: this.firabaseConfig
@@ -59,8 +64,6 @@ class Application {
 
 }
 
-let app = new Application(
-    admin.credential.cert(serviceAccount)
-);
+let app = new Application();
 
 app.init()
