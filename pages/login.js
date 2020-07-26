@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Router from "next/router";
-import firebase from "firebase"
+import firebase from "firebase";
 import Avatar from "@material-ui/core/Avatar";
 import Google from "@material-ui/icons/Android";
 import Button from "@material-ui/core/Button";
@@ -13,14 +13,12 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Icon from '@material-ui/core/Icon';
+import Icon from "@material-ui/core/Icon";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { getLayout } from "../components/layouts/CleanLayout";
 import Copyright from "../components/Copyright";
 import { route } from "next/dist/next-server/server/router";
-
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,8 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
   const classes = useStyles();
-  const [loading, setLoading] = useState(true)
-
+  const [loading, setLoading] = useState(true);
 
   const login = (e) => {
     e.preventDefault();
@@ -53,42 +50,44 @@ const Login = () => {
   };
 
   useEffect(() => {
-    firebase.auth().getRedirectResult().then(async (result) => {
-      console.log("asd")
-      if (result.credential) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
+    firebase
+      .auth()
+      .getRedirectResult()
+      .then(async (result) => {
+        console.log("asd");
+        if (result.credential) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
 
-        let tokenid = await result.user.getIdToken()
-        Router.push("/api/auth?tokenId=" + tokenid)
+          let tokenid = await result.user.getIdToken();
+          Router.push("/api/auth?tokenId=" + tokenid);
 
-        // await fetch("/api/auth?tokenId=" + tokenid, { redirect: 'follow', method: "POST" });
-        return;
-      }
+          // await fetch("/api/auth?tokenId=" + tokenid, { redirect: 'follow', method: "POST" });
+          return;
+        }
 
-      setLoading(false)
-      // The signed-in user info.
-      var user = result.user;
-    }).catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
-  }, [])
-
-
+        setLoading(false);
+        // The signed-in user info.
+        var user = result.user;
+      })
+      .catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+  }, []);
 
   const signInWithGoogle = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth().signInWithRedirect(provider);
-  }
+  };
   if (loading) {
-    return (<h1>Loading...</h1>)
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -148,7 +147,6 @@ const Login = () => {
               </Link>
             </Grid>
           </Grid>
-
         </form>
         <Button
           onClick={signInWithGoogle}
@@ -158,7 +156,7 @@ const Login = () => {
           startIcon={<Google />}
         >
           Ingresar con google
-      </Button>
+        </Button>
       </div>
       <Box mt={8}>
         <Copyright />
