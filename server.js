@@ -11,6 +11,7 @@ var admin = require('firebase-admin');
 const enviroment = require('./util/enviroment')
 const serviceAccount = enviroment.FIREBASE_ADMIN_CONFIG;
 
+
 class Application {
     constructor(firabaseConfig) {
         this.firabaseConfig = firabaseConfig;
