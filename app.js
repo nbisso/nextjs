@@ -12,19 +12,16 @@ const enviroment = require('./util/enviroment')
 
 
 
+
 class Application {
     constructor() {
-        try {
-            this.firabaseConfig = admin.credential.cert(enviroment.FIREBASE_ADMIN_CONFIG);
-        } catch{
-
-        }
+        this.firabaseConfig = admin.credential.cert(enviroment.FIREBASE_ADMIN_CONFIG);
     }
 
     initFirabase() {
 
         admin.initializeApp({
-            databaseURL: "https://cocinando-766f0.firebaseio.com",
+            databaseURL: enviroment.DATABASE_URL_FIREBASE,
             credential: this.firabaseConfig
         });
     }
@@ -65,5 +62,5 @@ class Application {
 }
 
 let app = new Application();
-
+console.log("ENV" + process.env.FIREBASE_ADMIN_CONFIG)
 app.init()

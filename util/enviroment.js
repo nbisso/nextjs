@@ -1,8 +1,11 @@
+
+require('dotenv').config()
+console.log(process.env.PEPE)
+
 module.exports = {
+    DATABASE_URL_FIREBASE: process.env.DATABASE_URL_FIREBASE || 'https://cocinando-766f0.firebaseio.com',
     SECRET_JWT: process.env.SECRET_KEY || "DEVKEY",
-    FIREBASE_ADMIN_CONFIG: function () {
-        return JSON.parse(process.env.FIREBASE_ADMIN_CONFIG)
-    },
+    FIREBASE_ADMIN_CONFIG: JSON.parse(process.env.FIREBASE_ADMIN_CONFIG),
     PORT: process.env.PORT || 3000,
     FIREBASE_FRONT_CONFIG: process.env.FIREBASE_FRONT_CONFIG ? JSON.parse(process.env.FIREBASE_FRONT_CONFIG) : {
         apiKey: "AIzaSyCq1D2qapuqgiHhuRzgkymRt7eZy0W_-Fg",
