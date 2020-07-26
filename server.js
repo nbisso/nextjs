@@ -8,7 +8,7 @@ const authMiddleware = require("./middleware/authPage")
 const apiroutes = require("./routes/api")
 
 var admin = require('firebase-admin');
-const serviceAccount = require("./cocinando-766f0-firebase-adminsdk-4cczq-1072cf404d.json")
+const serviceAccount = require("./secret.json")
 
 class Application {
     constructor(firabaseConfig) {
