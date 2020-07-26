@@ -1,9 +1,12 @@
 import Link from "next/link";
+import Header from "../Header";
 
 const SiteLayout = ({ children }) => (
   <div className="bg-white antialiased">
     <div>
       <div>
+        <Header />
+
         <div className="max-w-xl mx-auto px-8">
           <nav>
             <div className="py-4 flex-shrink-0 flex items-center">
