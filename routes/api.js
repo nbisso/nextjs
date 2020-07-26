@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var admin = require("firebase-admin");
 var jwt = require('jsonwebtoken');
+const enviroment = require('../util/enviroment');
 
 
 module.exports = function (app) {
@@ -81,7 +82,7 @@ module.exports = function (app) {
 
 
         admin.auth().verifyIdToken(token).then(r => {
-            var token = jwt.sign(r, 'c2RrbMOxYm5zbGtkYm5zZGxrbmJzZHNkYgpkc2JkYgoKZHNiCmRzYgpzZGIKZHNiCmJka2xuYmxmbnNsZGtuYmxrbmJrMgozdDM1CjIzNDYKMjM2CjMyCgo2NAo0MzYiJiTCtyImJCYkJiYkIiQmCg==');
+            var token = jwt.sign(r, enviroment.SECRET_JWT);
             console.log(token)
             res.cookie("token", token, {
                 httpOnly: true

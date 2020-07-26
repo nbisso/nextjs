@@ -8,7 +8,8 @@ const authMiddleware = require("./middleware/authPage")
 const apiroutes = require("./routes/api")
 
 var admin = require('firebase-admin');
-const serviceAccount = require("./secret.json")
+const enviroment = require('./util/enviroment')
+const serviceAccount = enviroment.FIREBASE_ADMIN_CONFIG;
 
 class Application {
     constructor(firabaseConfig) {
@@ -42,9 +43,11 @@ class Application {
                     return handle(req, res)
                 })
 
-                server.listen(3000, (err) => {
+                const port = enviroment.PORT;
+
+                server.listen(port, (err) => {
                     if (err) throw err
-                    console.log('> Ready on http://localhost:3000')
+                    console.log('> Ready on http://localhost:' + port)
                 })
             })
             .catch((ex) => {
