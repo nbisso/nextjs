@@ -8,16 +8,20 @@ const authMiddleware = require("./middleware/authPage")
 const apiroutes = require("./routes/api")
 
 var admin = require('firebase-admin');
-const serviceAccount = require("./secret.json")
+const enviroment = require('./util/enviroment')
+
+
+
 
 class Application {
-    constructor(firabaseConfig) {
-        this.firabaseConfig = firabaseConfig;
+    constructor() {
+        this.firabaseConfig = admin.credential.cert(enviroment.FIREBASE_ADMIN_CONFIG);
     }
 
     initFirabase() {
+
         admin.initializeApp({
-            databaseURL: "https://cocinando-766f0.firebaseio.com",
+            databaseURL: enviroment.DATABASE_URL_FIREBASE,
             credential: this.firabaseConfig
         });
     }
@@ -42,9 +46,11 @@ class Application {
                     return handle(req, res)
                 })
 
-                server.listen(3000, (err) => {
+                const port = enviroment.PORT;
+
+                server.listen(port, (err) => {
                     if (err) throw err
-                    console.log('> Ready on http://localhost:3000')
+                    console.log('> Ready on http://localhost:' + port)
                 })
             })
             .catch((ex) => {
@@ -55,8 +61,6 @@ class Application {
 
 }
 
-let app = new Application(
-    admin.credential.cert(serviceAccount)
-);
-
+let app = new Application();
+console.log("ENV" + process.env.FIREBASE_ADMIN_CONFIG)
 app.init()
