@@ -2,7 +2,14 @@ import Link from "next/link";
 import Header from "../Header";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "../ui/Typography";
+import styled from "styled-components";
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1170px;
+`;
 const SiteLayout = ({ children }) => (
   <div className="bg-white antialiased">
     <div>
@@ -34,14 +41,6 @@ const SiteLayout = ({ children }) => (
                   <a className="ml-8 font-medium text-gray-900">About</a>
                 </Link>
               </Typography>
-
-              <Typography>
-                <Link href="/account-settings/basic">
-                  <a className="ml-8 font-medium text-gray-900">
-                    Account Settings
-                  </a>
-                </Link>
-              </Typography>
             </Toolbar>
             <div className="py-4 flex-shrink-0 flex items-center">
               <img className="h-8 w-8" src="/logo.svg" alt="" />
@@ -50,7 +49,7 @@ const SiteLayout = ({ children }) => (
         </div>
       </div>
     </div>
-    <div className="mt-6 sm:mt-0 sm:py-12">{children}</div>
+    <Container>{children}</Container>
   </div>
 );
 
