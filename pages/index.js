@@ -1,10 +1,11 @@
 import Link from "next/link";
 
-const Index = () => (
+const Index = ({ nombre, user }) => (
   <div className="mt-8 max-w-xl mx-auto px-8">
+
     <h1 className="text-center">
       <span className="block text-xl text-gray-600 leading-tight">
-        Welcome to this
+        Welcome again {user ? user.name : "invitado"}
       </span>
       <span className="block text-5xl font-bold leading-none">
         Awesome Website
@@ -19,5 +20,14 @@ const Index = () => (
     </div>
   </div>
 );
+
+Index.getInitialProps = async (ctx) => {
+
+  let nombre = "test"
+  return {
+    nombre: nombre,
+    user: ctx.req.user
+  }
+}
 
 export default Index;

@@ -1,6 +1,6 @@
 
 require('dotenv').config()
-console.log(process.env.PEPE)
+
 
 module.exports = {
     DATABASE_URL_FIREBASE: process.env.DATABASE_URL_FIREBASE || 'https://cocinando-766f0.firebaseio.com',

@@ -54,14 +54,9 @@ const Login = () => {
 
   useEffect(() => {
     firebase.auth().getRedirectResult().then(async (result) => {
-      console.log("asd")
       if (result.credential) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-
         let tokenid = await result.user.getIdToken()
         Router.push("/api/auth?tokenId=" + tokenid)
-
-        // await fetch("/api/auth?tokenId=" + tokenid, { redirect: 'follow', method: "POST" });
         return;
       }
 
