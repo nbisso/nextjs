@@ -4,7 +4,7 @@ const Index = () => (
   <div className="mt-8 max-w-xl mx-auto px-8">
     <h1 className="text-center">
       <span className="block text-xl text-gray-600 leading-tight">
-        Welcome to this
+        Welcome to thisxcgxg d
       </span>
       <span className="block text-5xl font-bold leading-none">
         Awesome Website
