@@ -17,6 +17,13 @@ const theme = createMuiTheme({
       default: "#fff",
     },
   },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        "@font-face": ["Montserrat"],
+      },
+    },
+  },
 });
 
 export default theme;

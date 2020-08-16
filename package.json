@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon --ignore ./pages --ignore ./components app.js",
+    "dev": "nodemon --ignore 'components/' app.js",
     "build": "next build",
     "start": "node app.js"
   },

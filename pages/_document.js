@@ -1,22 +1,18 @@
 import React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import { ServerStyleSheets } from "@material-ui/styles";
 import theme from "../src/theme";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const styledComponentsSheet = new ServerStyleSheet();
-    const materialSheets = new ServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
-            styledComponentsSheet.collectStyles(
-              materialSheets.collect(<App {...props} />)
-            ),
+            styledComponentsSheet.collectStyles(<App {...props} />),
         });
       const initialProps = await Document.getInitialProps(ctx);
       return {
@@ -24,7 +20,6 @@ class MyDocument extends Document {
         styles: (
           <React.Fragment>
             {initialProps.styles}
-            {materialSheets.getStyleElement()}
             {styledComponentsSheet.getStyleElement()}
           </React.Fragment>
         ),
@@ -46,10 +41,11 @@ class MyDocument extends Document {
           />
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+
           <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
+          ></link>
         </Head>
         <body>
           <Main />
